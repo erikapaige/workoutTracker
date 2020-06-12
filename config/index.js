@@ -1,5 +1,5 @@
-// creating connection to mongoose workoutdb
-module.exports = require('mongoose').connect('mongodb://localhost/workoutsdb', {
+// creating connection to mongoose workout
+module.exports = require('mongoose').connect('mongodb://localhost/workout', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
