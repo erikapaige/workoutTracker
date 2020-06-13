@@ -52,19 +52,29 @@ const workoutSchema = new Schema({
   }, {
     //virtual value duration (to get total value)
     duration: true,
+    // virtual value weight
+    weight: true,  
+    // put virtuals on object returns
+    distance: true, 
     // put virtuals on object returns
     toJSON: {
       virtuals: true
     }
   })
 
-  // writing virtual property via getter (to retrieve information)
+  // writing virtual property via getter (to retrieve total duration)
   workoutSchema.virtual('totalDuration').get(function () {
     return this.exercises.reduce((d, exercise) => d + exercise.duration, 0)
   })
 
+  // writing virtual property via getter (to retrieve total weight)
   workoutSchema.virtual('totalWeight').get(function () {
     return this.exercises.reduce((w, exercise) => w + exercise.weight, 0)
+  })
+
+  // writing virtual property via getter (to retrieve total distance)
+  workoutSchema.virtual('totalDistance').get(function () {
+    return this.exercises.reduce((di, exercise) => di + exercise.weight, 0)
   })
 
 // exporting the model schema 

@@ -16,7 +16,7 @@ router.get('/workouts/range', (req, res) => {
 // GET one workout and all the items
 router.get('/workouts', (req, res) => {
   Workout.find(req.params.id)
-    .then(workout => res.json(workout))
+    .then((workout) => res.json(workout))
     .catch(err => console.error(err))
 })
 
