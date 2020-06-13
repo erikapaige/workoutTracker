@@ -3,7 +3,6 @@ const { Schema, model } = require('mongoose')
 
 // building Schema 
 // think about virtual properties, items do not want user to see, that would help gain total value
-// 
 const workoutSchema = new Schema({
     // newDate(), needs date of workout
     day: {
