@@ -7,8 +7,7 @@ const { Schema, model } = require('mongoose')
 const workoutSchema = new Schema({
     // newDate(), needs date of workout
     day: {
-      type: Date,
-      // need to set new date
+      type: Date, default: () => new Date ()
     },
     // all exercises belong to workout, so add via an array of objects to be stored 
     exercises: [{
@@ -68,7 +67,7 @@ const workoutSchema = new Schema({
     return this.exercises.reduce((w, exercise) => t + exercise.weight, 0)
   })
 
-  
+
 
 
 // exporting the model schema 
