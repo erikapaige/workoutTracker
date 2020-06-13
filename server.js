@@ -32,5 +32,5 @@ app.get('*', (req, res) => {
 
 // bring in the config folder that has the connection to mongoose
 require('./config')
-  .then(() => (app.listen(process.env.PORT || 3000))
+  .then(() => app.listen(process.env.PORT || 3000))
   .catch(err => console.error(err))
