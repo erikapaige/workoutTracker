@@ -3,30 +3,32 @@ const router = require('express').Router()
 // bring in the workout model
 const { Workout } = require('../models')
 
-// GET workouts
-router.get('/', (req, res) => {
-  Person.find()
-    //take the people and send them back (res.json)
-    .then(people => res.json(people))
+// GET ALL workouts
+router.get('/workouts/range', (req, res) => {
+  Workout.find()
+    //take the workout and send them back (res.json)
+    .then((workout) => { 
+        res.json(workout)
+      })
     .catch(err => console.error(err))
 })
 
 // GET one workout and all the items
-router.get('/workout/:id', (req, res) => {
-  Workout.findById(req.params.id)
+router.get('/workouts', (req, res) => {
+  Workout.find(req.params.id)
     .then(workout => res.json(workout))
     .catch(err => console.error(err))
 })
 
 // POST (ADD) one workout
-router.post('/workout', (req, res) => {
+router.post('/workouts', (req, res) => {
   Workout.create(req.body)
     .then(workout => res.json(workout))
     .catch(err => console.error(err))
 })
 
 // PUT (UPDATE, add item, remove item, modify if complete or not) one workout
-router.put('/workout/:id', (req, res) => {
+router.put('/workouts/:id', (req, res) => {
   // $push method to add to an array
   Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } })
     .then(() => res.sendStatus(200))
@@ -34,7 +36,7 @@ router.put('/workout/:id', (req, res) => {
 })
 
 // DELETE one workout
-router.delete('/workout/:id', (req, res) => {
+router.delete('/workouts/:id', (req, res) => {
   Workout.findByIdAndDelete(req.params.id)
     .then(() => res.sendStatus(200))
     .catch(err => console.error(err))

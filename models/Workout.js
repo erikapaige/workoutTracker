@@ -60,15 +60,12 @@ const workoutSchema = new Schema({
 
   // writing virtual property via getter (to retrieve information)
   workoutSchema.virtual('totalDuration').get(function () {
-    return this.exercises.reduce((d, exercise) => t + exercise.duration, 0)
+    return this.exercises.reduce((d, exercise) => d + exercise.duration, 0)
   })
 
   workoutSchema.virtual('totalWeight').get(function () {
-    return this.exercises.reduce((w, exercise) => t + exercise.weight, 0)
+    return this.exercises.reduce((w, exercise) => w + exercise.weight, 0)
   })
-
-
-
 
 // exporting the model schema 
 module.exports = model('Workout', workoutSchema)
