@@ -1,14 +1,15 @@
+// bring in mongoose
 const { Schema, model } = require('mongoose')
 
-module.exports = model('Workout', new Schema(
+//building Schema 
+const workoutSchema = new Schema({
   {
     day: {
       // to get date of workout
       type: Date,
       // need to set new date
     },
-    exercises: [
-      {
+    exercises: [{
         type: 
           {
             type: String, 
@@ -19,29 +20,32 @@ module.exports = model('Workout', new Schema(
           {
             name: String, 
             //assign other properties
-            // assign prompt for user
+            // ask user for name?
           }, 
         duration: 
           {
-            type: Number, 
-            // assign prompt 
+            type: Number
+            // ask user for number?
           },
         weight:
           {
             type: Number
           },
         distance:
-        {
-          type: Number
-        },
+          {
+            type: Number
+          },
         sets:
-        {
-          type: Number
-        },
+          {
+            type: Number
+          },
         reps:
-        {
-          type: Number
-        }
-      }    
-    ]
-}))
+          {
+            type: Number
+          }
+      }]
+  }
+})
+
+// exporting the model schema 
+module.exports = model('Workout', workoutSchema)

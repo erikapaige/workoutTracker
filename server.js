@@ -1,10 +1,12 @@
 // bring in the express package
 const express = require('express')
-// bring in package morgan
-const morgan = require('morgan')
+// bring in path, join method for public middleware
+const { join } = require('path')
+
 const app = express()
 
-// static middlewear
+// static middleware
+app.use(express.static(join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
