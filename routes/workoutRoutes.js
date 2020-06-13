@@ -3,6 +3,13 @@ const router = require('express').Router()
 // bring in the workout model
 const { Workout } = require('../models')
 
+// GET workouts
+router.get('/', (req, res) => {
+  Person.find()
+    //take the people and send them back (res.json)
+    .then(people => res.json(people))
+    .catch(err => console.error(err))
+})
 
 // GET one workout and all the items
 router.get('/workout/:id', (req, res) => {
