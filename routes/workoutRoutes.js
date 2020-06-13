@@ -3,14 +3,8 @@ const router = require('express').Router()
 // bring in the workout model
 const { Workout } = require('../models')
 
-// GET all workouts
-router.get('/workout', (req, res) => {
-  Workout.find()
-    .then(workout => res.json(workout))
-    .catch(err => console.error(err))
-})
 
-// GET one workout
+// GET one workout and all the items
 router.get('/workout/:id', (req, res) => {
   Workout.findById(req.params.id)
     .then(workout => res.json(workout))
@@ -24,9 +18,10 @@ router.post('/workout', (req, res) => {
     .catch(err => console.error(err))
 })
 
-// PUT (UPDATE) one workout
+// PUT (UPDATE, add item, remove item, modify if complete or not) one workout
 router.put('/workout/:id', (req, res) => {
-  Workout.findByIdAndUpdate(req.params.id, req.body)
+  // $push method to add to an array
+  Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } })
     .then(() => res.sendStatus(200))
     .catch(err => console.error(err))
 })
