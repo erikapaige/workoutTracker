@@ -31,7 +31,7 @@ router.post('/workouts', (req, res) => {
 router.put('/workouts/:id', (req, res) => {
   // $push method to add to an array
   Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } })
-    .then(() => res.sendStatus(200))
+    .then((workout) => res.json(workout))
     .catch(err => console.error(err))
 })
 
